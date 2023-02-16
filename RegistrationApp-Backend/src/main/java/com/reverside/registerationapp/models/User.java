@@ -1,5 +1,7 @@
 package com.reverside.registerationapp.models;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,14 +12,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
     @Column
+    @NotNull
     private String email;
     @Column
+    @NotNull
     private String password;
     @Column(name = "is_hr_verified")
+    @NotNull
     private Boolean isHrVerified;
     @Column(name = "is_password_changed")
+    @NotNull
     private Boolean isPasswordChanged;
     @Column(name = "account_created")
+    @NotNull
     private Date accountCreated;
     @Column(name = "last_login")
     private Date lastLogin;
