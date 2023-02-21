@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Users } from 'src/app/model/users.model';
 
 @Component({
   selector: 'app-register',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
 
+  constructor(
+      user: Users
+    ) {}
+
+    registerUser() { alert("alert popup") }
 }

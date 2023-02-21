@@ -1,1 +1,26 @@
-<p>login works!</p>
+<form class="firstTimeLogin">
+    <label for="email">Email: </label>
+    <input [(ngModel)]="email" type="email" placeholder="email@email.com" required>
+    <br/>
+    <button (click)="loginUser()" value="Login">
+</form>
+
+<form class="setPassword">
+    <label for="password1">Password: </label>
+    <input [(ngModel)]="password1" type="password" required>
+    <br/>
+    <label for="password2">Confirm Password: </label>
+    <input [(ngModel)]="password2" type="password" required>
+    <br/>
+    <button (click)="setPassword()" value="Set Password">
+</form>
+
+<form class="login">
+    <label for="email">Email: </label>
+    <input [(ngModel)] type="email" placeholder="email@email.com">
+    <br/>
+    <label for="password">Password: </label>
+    <input [(ngModel)] type="password" required>
+    <br/>
+    <button (click)="loginUser()" value="Login">
+</form>
