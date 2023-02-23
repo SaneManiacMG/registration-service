@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -25,6 +26,9 @@ public class LoginUserServiceImpl implements LoginUserService {
                 if (!user.getPasswordChanged()) {
                     return new ResponseEntity<>("Change default password\nhttp://localhost:8080/login/changePassword", HttpStatus.NOT_ACCEPTABLE);
                 } else if (userOptional.get().getPassword().equals(password)) {
+                    User savedUser = user;
+                    savedUser.setLastLogin(new Date());
+                    userRepository.save(savedUser);
                     return new ResponseEntity<>("Logged in successfully", HttpStatus.OK);
                 } else {
                     return new ResponseEntity<>("Incorrect password", HttpStatus.UNAUTHORIZED);
