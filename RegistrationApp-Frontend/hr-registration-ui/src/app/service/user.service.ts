@@ -13,6 +13,8 @@ private baseURL = "localhost:8080/home";
   constructor(private httpClient: HttpClient) { }
 
   getUsersList() : Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.baseURL}`);
+    console.log("test log...");
+    return this.httpClient.get<User[]>('/home');
+
   }
 }

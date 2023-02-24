@@ -8,17 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.Date;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/home")
 public class HomePageController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping
+    @GetMapping()
     public List<User> getAllUsers() {
+        System.out.println(new Date() + "\n/home endpoint hit");
         return userRepository.findAll();
     }
 }

@@ -60,10 +60,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "hr-registration-ui:build:production"
+              "browserTarget": "hr-registration-ui:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             },
             "development": {
-              "browserTarget": "hr-registration-ui:build:development"
+              "browserTarget": "hr-registration-ui:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +73,8 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "hr-registration-ui:build"
+            "browserTarget": "hr-registration-ui:build",
+            "proxyConfig": "src/proxy.conf.json"
           }
         },
         "test": {
