@@ -1,5 +1,6 @@
 package com.reverside.registerationapp.controllers;
 
+import com.reverside.registerationapp.models.AuthRequest;
 import com.reverside.registerationapp.services.AuthenticateUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ public class AuthenticationController {
     private AuthenticateUserService authenticateUserService;
 
     @PostMapping("/activate")
-    public ResponseEntity<Object> activateUser(@RequestBody String email) {
-        return authenticateUserService.activateAccount(email);
+    public ResponseEntity<Object> activateUser(@RequestBody AuthRequest request) {
+        return authenticateUserService.activateAccount(request);
     }
 }
