@@ -19,9 +19,7 @@ export class HomeComponent implements OnInit {
 
   private getUsersList() {
     this.userService.getUsersList().subscribe(data => {
-      console.log(data);
       this.users = data;
-      console.log(data);
     })
   }
 }
