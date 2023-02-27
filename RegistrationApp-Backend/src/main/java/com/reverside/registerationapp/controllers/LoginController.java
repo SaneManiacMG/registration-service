@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/login")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class LoginController {
     @Autowired
     private LoginUserService loginUserService;
 
     @PostMapping
-    public ResponseEntity<Object> loginUser(@RequestBody LoginRequest request) {
+    public ResponseEntity<Object> createAuthenticationToken(@RequestBody LoginRequest request) {
         return loginUserService.loginUser(request.getEmail(), request.getPassword());
     }
 
