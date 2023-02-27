@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './component/register/register.component';
 import { LoginComponent } from './component/login/login.component';
 import { AuthenticateComponent } from './component/authenticate/authenticate.component';
+import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './component/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { AuthenticateComponent } from './component/authenticate/authenticate.com
     HomeComponent,
     RegisterComponent,
     LoginComponent,
-    AuthenticateComponent
+    AuthenticateComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
