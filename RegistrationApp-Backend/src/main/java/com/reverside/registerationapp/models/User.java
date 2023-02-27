@@ -29,6 +29,8 @@ public class User {
     private Date accountCreated;
     @Column(name = "last_login")
     private Date lastLogin;
+    @Column(name = "account_type")
+    private String accountType;
 
     public User(String email) {
         this.email = email;
@@ -37,6 +39,7 @@ public class User {
         this.isPasswordChanged = false;
         this.accountCreated = new Date();
         this.lastLogin = null;
+        this.accountType = "USER";
     }
 
     public User() {
@@ -98,6 +101,14 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -108,6 +119,7 @@ public class User {
                 ", isPasswordChanged=" + isPasswordChanged +
                 ", accountCreated=" + accountCreated +
                 ", lastLogin=" + lastLogin +
+                ", accountType='" + accountType + '\'' +
                 '}';
     }
 }
