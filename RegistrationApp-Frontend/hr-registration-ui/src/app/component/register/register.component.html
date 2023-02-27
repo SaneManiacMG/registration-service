@@ -1,1 +1,18 @@
-<p>register works!</p>
+<div container>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mt-5">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-4">Register</h3>
+          <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="username">Email: </label>
+              <input type="email" class="form-control" name="email" [(ngModel)]="email">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-4">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
