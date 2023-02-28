@@ -8,19 +8,15 @@ import { User } from '../model/user.model';
 })
 export class UserService {
 
-private baseURL = "localhost:8080/home";
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getUsersList() : Observable<User[]> {
-    return this.httpClient.get<User[]>('/home');
+    return this.http.get<User[]>('/home');
 
   }
 
-  registerNewUser(email: string) : any {
-    console.log("sending request...");
-    const headers = new HttpHeaders({ 'Content-Type': 'text/plain' })
-    const options = { headers: headers };
-    return this.httpClient.post<string>('/register', email, { headers });
+  registerNewUser(email: string) {
+    console.log("posting email...")
+    return this.http.post("/register", email);
   }
 }

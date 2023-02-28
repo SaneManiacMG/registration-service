@@ -10,6 +10,7 @@ import { LoginComponent } from './component/login/login.component';
 import { AuthenticateComponent } from './component/authenticate/authenticate.component';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { UserService } from './service/user.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { NavbarComponent } from './component/navbar/navbar.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

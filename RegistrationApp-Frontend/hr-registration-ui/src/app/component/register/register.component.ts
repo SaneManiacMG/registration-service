@@ -12,6 +12,7 @@ import { NgModel } from '@angular/forms';
 export class RegisterComponent implements OnInit {
 
   email: string = '';
+  serverResponse: any;
 
   constructor(private userService: UserService,
     private router: Router) {}
@@ -22,11 +23,7 @@ export class RegisterComponent implements OnInit {
 
 
   onSubmit() {
-    console.log("Email submitted: " + this.email);
-    this.userService.registerNewUser(this.email).subscribe((response: any) =>
-     {
-      console.log(response);
-      alert(response);
-     });
+    let response = this.userService.registerNewUser(this.email)
+    .subscribe((data) => this.serverResponse=data);
   }
 }
