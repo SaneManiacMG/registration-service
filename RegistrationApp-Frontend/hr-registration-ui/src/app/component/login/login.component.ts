@@ -1,7 +1,6 @@
 import { ClientResponse } from './../../model/client-response.model';
 import { UserService } from 'src/app/service/user.service';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { Login } from 'src/app/model/login.model';
 
 @Component({
@@ -28,6 +27,5 @@ export class LoginComponent {
         console.log(err.error.user);
         alert(err.error.message);
       })
-
   }
 }

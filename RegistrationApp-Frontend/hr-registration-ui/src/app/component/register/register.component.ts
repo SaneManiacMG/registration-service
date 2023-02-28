@@ -9,10 +9,11 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+
   email: string = '';
   response: ClientResponse = new ClientResponse();
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {}
 

@@ -7,11 +7,11 @@
           <form (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="username">Email: </label>
-              <input type="email" class="form-control" name="email" [(ngModel)]="request.email">
+              <input type="email" class="form-control" name="email" [(ngModel)]="loginRequest.email">
             </div>
             <div class="form-group">
               <label for="password">Password: </label>
-              <input type="password" class="form-control" name="password" [(ngModel)]="request.password">
+              <input type="password" class="form-control" name="password" [(ngModel)]="loginRequest.password">
             </div>
             <button type="submit" class="btn btn-primary btn-block mt-4">Login</button>
           </form>

@@ -5,7 +5,6 @@
       <th>User ID</th>
       <th>Email</th>
       <th>Verified</th>
-      <th>Password Changed</th>
       <th>Date Created</th>
       <th>Last Login</th>
       <th>Account Type</th>
@@ -16,10 +15,11 @@
       <td>{{user.userId}}</td>
       <td>{{user.email}}</td>
       <td>{{user.hrVerified}}</td>
-      <td>{{user.passwordChanged}}</td>
       <td>{{user.dateCreated}}</td>
       <td>{{user.lastLogin}}</td>
       <td>{{user.accountType}}</td>
+      <td><button type="button" class="btn btn-primary btn-block mt-4" (click)="approveRequest(user.email)">Approve</button></td>
+      <td><button type="button" class="btn btn-secondary btn-block mt-4" (click)="rejectRequest(user.email)">Reject</button></td>
     </tr>
   </tbody>
 </table>

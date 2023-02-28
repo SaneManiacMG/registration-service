@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../model/user.model';
+import { Login } from '../model/login.model';
+import { Authentication } from '../model/authentication.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,12 @@ export class UserService {
     return this.http.post<ClientResponse>("/register", email);
   }
 
-  loginUser(user: User) : Observable<ClientResponse> {
-    return this.http.post<ClientResponse>("/login", user);
+  loginUser(login: Login) : Observable<ClientResponse> {
+    return this.http.post<ClientResponse>("/login", login);
   }
+
+  authentication(request: Authentication) : Observable<ClientResponse> {
+    return this.http.post<ClientResponse>("/authenticate", request);
+  }
+
 }
