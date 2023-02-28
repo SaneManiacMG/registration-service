@@ -1,5 +1,6 @@
 package com.reverside.registerationapp.services;
 
+import com.reverside.registerationapp.models.HttpResponse;
 import com.reverside.registerationapp.models.LoginRequest;
 import com.reverside.registerationapp.models.LoginResponse;
 import com.reverside.registerationapp.models.User;
@@ -25,6 +26,8 @@ public class LoginUserServiceImpl implements LoginUserService {
     User user;
     @Autowired
     private UserRepository userRepository;
+
+    private HttpResponse response;
 
 //    @Autowired
 //    AuthenticationManager authenticationManager;
@@ -61,20 +64,27 @@ public class LoginUserServiceImpl implements LoginUserService {
             user = userOptional.get();
             if (user.getHrVerified()){
                 if (!user.getPasswordChanged()) {
-                    return new ResponseEntity<>("Change default password\nhttp://localhost:8080/login/changePassword", HttpStatus.NOT_ACCEPTABLE);
+                    response.setMessage("Change default password");
+                    response.setUser(user);
+                    return new ResponseEntity<>(response, HttpStatus.NOT_ACCEPTABLE);
                 } else if (userOptional.get().getPassword().equals(password)) {
-                    User savedUser = user;
-                    savedUser.setLastLogin(new Date());
-                    userRepository.save(savedUser);
-                    return new ResponseEntity<>("Logged in successfully", HttpStatus.OK);
+                    user.setLastLogin(new Date());
+                    userRepository.save(user);
+                    response.setMessage("Logged in successfully");
+                    response.setUser(user);
+                    return new ResponseEntity<>(response, HttpStatus.OK);
                 } else {
-                    return new ResponseEntity<>("Incorrect password", HttpStatus.UNAUTHORIZED);
+                    response.setMessage("Incorrect password");
+                    return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
                 }
             } else {
+                response.setMessage("HR needs to activate");
+                response.setUser(user);
                 return new ResponseEntity<>("HR needs to activate", HttpStatus.UNAUTHORIZED);
             }
         } catch (Exception e) {
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+            response.setMessage("User not found");
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
     }
 

@@ -1,3 +1,4 @@
+import { ClientResponse } from './../model/client-response.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -15,8 +16,11 @@ export class UserService {
 
   }
 
-  registerNewUser(email: string) {
-    console.log("posting email...")
-    return this.http.post("/register", email);
+  registerNewUser(email: string) : Observable<ClientResponse> {
+    return this.http.post<ClientResponse>("/register", email);
+  }
+
+  loginUser(user: User) : Observable<ClientResponse> {
+    return this.http.post<ClientResponse>("/login", user);
   }
 }

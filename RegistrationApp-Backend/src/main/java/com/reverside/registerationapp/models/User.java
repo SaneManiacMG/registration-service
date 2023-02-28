@@ -12,8 +12,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private Long userId;
-    @Column
-    @NotNull
+    @Column//(unique = true, nullable = false)
     private String email;
     @Column
     @NotNull
@@ -47,10 +46,6 @@ public class User {
 
     public Long getUserId() {
         return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public String getPassword() {

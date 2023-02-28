@@ -1,6 +1,5 @@
 package com.reverside.registerationapp.services;
 
-import com.reverside.registerationapp.models.User;
 import org.springframework.http.ResponseEntity;
 
 public interface RegisterUserService {

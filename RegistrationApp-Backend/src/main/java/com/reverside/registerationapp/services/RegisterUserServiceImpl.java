@@ -1,33 +1,35 @@
 package com.reverside.registerationapp.services;
 
-import com.reverside.registerationapp.models.LoginRequest;
+import com.reverside.registerationapp.models.HttpResponse;
 import com.reverside.registerationapp.models.User;
 import com.reverside.registerationapp.repositories.UserRepository;
-import com.reverside.registerationapp.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Date;
 import java.util.Optional;
 
 @Service
 public class RegisterUserServiceImpl implements RegisterUserService {
-    User newUser = new User();
     @Autowired
     private UserRepository userRepository;
 
+    private HttpResponse response;
+
+    private User user;
+
     @Override
     public ResponseEntity<Object> sendEmailForRegistration(String email) {
+        response = new HttpResponse();
         try {
-            return new ResponseEntity<>("Email sent to HR for registration.\nlocalhost:8080/authenticate", HttpStatus.OK);
+            response.setMessage("User " + email + " recorded, please contact HR");
+            response.setUser(user);
         } catch (Exception e) {
-            return new ResponseEntity<>("Email could not be sent.", HttpStatus.INTERNAL_SERVER_ERROR);
+            response.setMessage("Could not save new user");
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Override
@@ -35,15 +37,17 @@ public class RegisterUserServiceImpl implements RegisterUserService {
         Optional<User> userOptional = userRepository.findByEmail(email);
 
         if (userOptional.isEmpty()) {
-            newUser = new User(email);
+            user = new User(email);
             try {
-                userRepository.save(newUser);
+                userRepository.save(user);
             } catch (Exception e) {
                 return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
             }
             return sendEmailForRegistration(email);
         } else {
-            return new ResponseEntity<>("User already exists.", HttpStatus.CONFLICT);
+            response.setMessage("User already exists.");
+            response.setUser(user);
+            return new ResponseEntity<>(response, HttpStatus.CONFLICT);
         }
     }
 }
