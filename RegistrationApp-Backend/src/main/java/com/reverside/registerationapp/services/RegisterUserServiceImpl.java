@@ -15,13 +15,12 @@ public class RegisterUserServiceImpl implements RegisterUserService {
     @Autowired
     private UserRepository userRepository;
 
-    private HttpResponse response;
+    private HttpResponse response = new HttpResponse();
 
     private User user;
 
     @Override
     public ResponseEntity<Object> sendEmailForRegistration(String email) {
-        response = new HttpResponse();
         try {
             response.setMessage("User " + email + " recorded, please contact HR");
             response.setUser(user);
@@ -41,7 +40,8 @@ public class RegisterUserServiceImpl implements RegisterUserService {
             try {
                 userRepository.save(user);
             } catch (Exception e) {
-                return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+                response.setMessage(e.toString());
+                return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
             }
             return sendEmailForRegistration(email);
         } else {
