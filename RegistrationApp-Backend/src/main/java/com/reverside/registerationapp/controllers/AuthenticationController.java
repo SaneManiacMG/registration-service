@@ -13,7 +13,7 @@ public class AuthenticationController {
     @Autowired
     private AuthenticateUserService authenticateUserService;
 
-    @PostMapping("/activate")
+    @PostMapping
     public ResponseEntity<Object> activateUser(@RequestBody AuthRequest request) {
         return authenticateUserService.activateAccount(request);
     }

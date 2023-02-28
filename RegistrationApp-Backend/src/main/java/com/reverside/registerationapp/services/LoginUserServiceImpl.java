@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @Service
 public class LoginUserServiceImpl implements LoginUserService {
-    User user;
 
     @Autowired
     private UserRepository userRepository;
@@ -44,14 +43,13 @@ public class LoginUserServiceImpl implements LoginUserService {
 //            throw new Exception("INVALID_CREDENTIALS", e);
 //        }
 //    }
-    private HttpResponse response = new HttpResponse();
 
     @Override
     public ResponseEntity<Object> loginUser(String email, String password) {
-
+        HttpResponse response = new HttpResponse();
+        User user;
         try {
             Optional<User> userOptional = userRepository.findByEmail(email);
-
             if (userOptional.isPresent()) {
                 user = userOptional.get();
                 if (user.getHrVerified()) {
@@ -82,6 +80,8 @@ public class LoginUserServiceImpl implements LoginUserService {
 
     @Override
     public ResponseEntity<Object> changeDefaultPassword(String email, String password) {
+        HttpResponse response = new HttpResponse();
+        User user;
         try {
             Optional<User> userOptional = userRepository.findByEmail(email);
             if (userOptional.isPresent()) {

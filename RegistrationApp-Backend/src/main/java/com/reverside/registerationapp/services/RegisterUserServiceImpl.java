@@ -15,12 +15,10 @@ public class RegisterUserServiceImpl implements RegisterUserService {
     @Autowired
     private UserRepository userRepository;
 
-    private HttpResponse response = new HttpResponse();
-
-    private User user;
-
     @Override
     public ResponseEntity<Object> sendEmailForRegistration(String email) {
+        HttpResponse response = new HttpResponse();
+        User user = new User();
         try {
             response.setMessage("User " + email + " recorded, please contact HR");
             response.setUser(user);
@@ -34,9 +32,9 @@ public class RegisterUserServiceImpl implements RegisterUserService {
     @Override
     public ResponseEntity<Object> requestRegistration(String email) {
         Optional<User> userOptional = userRepository.findByEmail(email);
-
+        HttpResponse response = new HttpResponse();
+        User user = new User(email);
         if (userOptional.isEmpty()) {
-            user = new User(email);
             try {
                 userRepository.save(user);
             } catch (Exception e) {
